@@ -1,0 +1,56 @@
+- name: Adding | PHP repo
+  become: true
+  apt_repository: repo={{ php_ppa }}
+
+- name: Upgrading | apt
+  become: yes
+  apt: update_cache=yes
+
+- name: Installing | PHP Packages
+  become: yes
+  apt: pkg={{ item }} state=latest
+  with_items: "{{ php_packages }}"
+  when: php_packages is defined
+
+- name: Installing | Git
+  apt: name=git state=installed
+
+- name: Restarting | php7-fpm
+  service: name=php7.1-fpm enabled=yes state=restarted
+  become: yes
+
+- name: Installing | nginx
+  apt: name=nginx state=installed
+  become: true
+
+- name: Starting | nginx
+  service:
+    name: nginx
+    state: started
+  become: true
+
+- import_tasks: install.yml
+- import_tasks: test.yml
+- import_tasks: configure.yml
+- import_tasks: auth_json.yml
+- import_tasks: update.yml
+  when: composer_update == true
+
+- name: Installing | Unzip
+  shell: apt install zip unzip php7.0-zip -y
+  become: true
+
+- name: Create Project Root Directory
+  shell: mkdir -p var/www/html
+  become: true
+
+- name: Composer | Install
+  shell: composer install
+  args:
+    chdir: /var/www/html
+
+- name: Composer | Update
+  shell: composer update
+  args:
+    chdir: /var/www/html
+

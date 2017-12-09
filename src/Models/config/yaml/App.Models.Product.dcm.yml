@@ -1,5 +1,5 @@
 # config/yaml/Product.dcm.yml
-Product:
+App\Models\Product:
   type: entity
   table: products
   id:

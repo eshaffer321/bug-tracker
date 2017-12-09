@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bugs{% endblock %}
+{% block bugspan %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css"
+          type="text/css"/>
+{% endblock %}
+
+{% block content %}
+
+    {% embed 'authed.nav.html.twig' %}
+    {% block activebugs %}active{% endblock %}
+    {% endembed %}
+
+    <div class="container">
+        <br>
+        <form>
+            <fieldset>
+                <legend>Create a new Bug</legend>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="engineers">Engineers</label>
+                            <select class="form-control" id="engineers"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="reporters">Reporters</label>
+                            <select class="form-control" id="reporters">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="products">Products</label>
+                            <select id="products" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea">Description</label>
+                    <textarea class="form-control" rows="3" id="message"></textarea>
+                </div>
+                <div class="btn btn-primary" id="submit">Submit</div>
+            </fieldset>
+        </form>
+        <hr>
+        <br>
+        <h1>List of Bugs</h1>
+        <p>These are all bugs that have an engineer assigned</p>
+        <br>
+        <p><strong>Note:</strong> Click inside the grid to update</p>
+        <div id="myGrid" style="height: 500px;width:1000px" class="ag-theme-fresh"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/ag-grid.js"></script>
+    <script src="src/js/login.js"></script>
+    <script src="src/js/bugs.js"></script>
+    <script src="src/js/bugs-grid.js"></script>
+{% endblock %}

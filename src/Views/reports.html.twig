@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reports{% endblock %}
+{% block reportspan %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css"
+          type="text/css"/>
+{% endblock %}
+
+{% block content %}
+
+    {% embed 'authed.nav.html.twig' %}
+        {% block activereport %}active{% endblock %}
+    {% endembed %}
+    <div class="container">
+        <br><br>
+        <h1>Reports</h1>
+        <p>Generate some reports about your data.</p>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="btn-lg btn-primary" id="user-report">User Report</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="btn-lg btn-primary" id="bug-report">Bug Report</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="btn-lg btn-primary" id="product-report">Product Report</div>
+            </div>
+        </div>
+        <br><br>
+        <div id="results"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/ag-grid.js"></script>
+    <script src="src/js/login.js"></script>
+    <script src="src/js/reports.js"></script>
+{% endblock %}

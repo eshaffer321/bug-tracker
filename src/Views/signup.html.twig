@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css"
+          type="text/css"/>
+{% endblock %}
+{% block content %}
+    {% embed 'signin.nav.html.twig' %}
+        {% block activelogin %}active{% endblock %}
+    {% endembed %}
+    {% include 'forms.html.twig' %}
+{% endblock %}
+{% block scripts %}
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+    <script src="src/js/login.js"></script>
+{% endblock %}

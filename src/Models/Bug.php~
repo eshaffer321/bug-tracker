@@ -1,0 +1,13 @@
+<?php
+/**
+ * @Entity(repositoryClass="BugRepository") @Table(name="bugs")
+ */
+namespace App\Models;
+/**
+ * @ORM\Entity
+ * @App\Models\config\yaml
+ */
+class Bug
+{
+
+}

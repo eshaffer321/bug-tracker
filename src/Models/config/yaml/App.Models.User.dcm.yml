@@ -1,5 +1,4 @@
-# config/yaml/User.dcm.yml
-User:
+App\Models\User:
   type: entity
   table: users
   id:
@@ -10,10 +9,14 @@ User:
   fields:
     username:
       type: string
+      unique: true
     password:
       type: string
     authenticated:
       type: integer
+    role:
+      type: string
+      nullable: false
   oneToMany:
     reportedBugs:
       targetEntity: Bug

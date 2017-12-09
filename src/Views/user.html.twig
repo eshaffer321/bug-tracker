@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+{% block userspan %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css"
+          type="text/css"/>
+{% endblock %}
+
+{% block content %}
+    {% embed 'authed.nav.html.twig' %}
+        {% block activeusers %}active{% endblock %}
+    {% endembed %}
+    <div class="container">
+        <br>
+        <h1>Users</h1>
+        <p>Click onto any of the rows to update</p><br><br>
+        <label for="products">Users</label>
+        <div class="form-inline">
+            <div class="form-group">
+                <select id="user-dropdown" class="form-control"></select>
+                <div class="btn btn-primary" id="submit">Delete User</div>
+            </div>
+        </div>
+        <br><br>
+    <div id="myGrid" style="height: 500px;width:1000px" class="ag-theme-fresh"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/ag-grid.js"></script>
+    <script src="src/js/login.js"></script>
+    <script src="/src/js/user-grid.js"></script>
+{% endblock %}

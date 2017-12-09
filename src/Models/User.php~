@@ -1,0 +1,10 @@
+<?php
+namespace App\Models;
+/**
+ * @Entity @Table(name="users")
+ */
+class User
+{
+ 
+
+}

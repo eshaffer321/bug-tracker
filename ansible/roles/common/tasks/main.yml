@@ -40,9 +40,47 @@
   shell: apt install zip unzip php7.0-zip -y
   become: true
 
-- name: Create Project Root Directory
-  shell: mkdir -p var/www/html
-  become: true
+#- name: Create Project Root Directory
+#  file:
+#    path: var/www/html
+#    state: directory
+#    mode: 0775
+#  become: true
+#
+#- name: Clone Repo
+#  git:
+#    repo: https://github.com/eshaffer321/bug-tracker.git
+#    dest: /var/www/html
+#    clone: yes
+#    update: yes
+
+- name: Creating | Nginx Config
+  template:
+    src: templates/nginx.sites.j2
+    dest: /etc/nginx/sites-available/dev.bugtracker.com
+    mode: 0644
+
+- name: Creating | Nginx Symlink
+  file:
+    src: /etc/nginx/sites-available/dev.bugtracker.com
+    dest: /etc/nginx/sites-enabled/dev.bugtracker.com
+    state: link
+
+- name: Adjusting | Nginx Config File
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+
+- name: Removing | Default Avaliable Config File
+  file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+
+- name: Removing | Default Enabled Config File
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
 
 - name: Composer | Install
   shell: composer install
@@ -54,3 +92,6 @@
   args:
     chdir: /var/www/html
 
+- name: Restarting | Nginx
+  shell: service nginx restart
+  become: true

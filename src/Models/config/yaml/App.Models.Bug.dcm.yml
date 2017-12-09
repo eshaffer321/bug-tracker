@@ -1,4 +1,4 @@
-Bug:
+App\Models\Bug:
   type: entity
   table: bugs
   id:

@@ -1,0 +1,39 @@
+{% block forms %}
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                {# SignUp #}
+                <legend>Sign Up</legend>
+                <label for="usernameInput">Username</label>
+                <input class="form-control" aria-describedby="username-help" placeholder="Enter Username"
+                       id="signup-username" name="signup-username">
+                <label for="signup-password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" id="signup-password"
+                       name="signup-password">
+                <label for="exampleSelect2">Role</label>
+                <br>
+                <select class="form-control" id="role-select">
+                    <option value="Engineer">Engineer</option>
+                    <option value="Tester">Reporter</option>
+                </select>
+                <br>
+                <div class="btn btn-primary" id="signup">SignUp</div>
+            </div>
+            {# Login #}
+            <div class="col-lg-6">
+                <legend>Login</legend>
+                <label for="login-username">Username</label>
+                <input class="form-control" id="login-username" name="login-username"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter email">
+                <label for="login-password">Password</label>
+                <br>
+                <input type="password" class="form-control" id="login-password" name="login-password"
+                       placeholder="Password">
+                <br>
+                <div class="btn btn-primary" id="login">Login</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,5 +2,10 @@
 
 - hosts: all
   become: true
+  handlers:
+      - name: restart nginx
+        service:
+         name: nginx
+         state: restarted
   roles:
     - common

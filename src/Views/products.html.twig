@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css"
+          type="text/css"/>
+{% endblock %}
+
+{% block title %}Products{% endblock %}
+{% block productspan %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block content %}
+    {% if auth %}
+        {% embed 'authed.nav.html.twig' %}
+            {% block activeproducts %}active{% endblock %}
+        {% endembed %}
+    {% else %}
+        {% embed 'signin.nav.html.twig' %}
+            {% block activeproducts %}active{% endblock %}
+        {% endembed %}
+    {% endif %}
+
+    <div class="container">
+        <br>
+        <h1>Products</h1>
+        <p>These are all of our publicly accessible products</p><br><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Search</label>
+                    <input class="form-control" placeholder="Enter a product name" id="name-input">
+                </div>
+                <div class="btn btn-primary" id="name-submit">Search</div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Show Available</label>
+                    <div class="form-control btn btn-primary" id="available">Filter</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Show Unavailable</label>
+                    <div class="form-control btn btn-primary" id="unavailable">Filter</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Search</label>
+                    <input class="form-control" placeholder="Enter a price" id="price-input">
+                </div>
+                <div class="btn btn-primary" id="price-submit">Search</div>
+            </div>
+        </div>
+
+        <br><br>
+        <p><strong>Note:</strong> List is scrollable</p>
+        <div id="myGrid" style="height: 500px;width:1000px" class="ag-theme-fresh"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://unpkg.com/sweetalert2@7.0.7/dist/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/ag-grid.js"></script>
+    <script src="src/js/login.js"></script>
+    <script src="src/js/products.js"></script>
+{% endblock %}
